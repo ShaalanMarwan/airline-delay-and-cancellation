@@ -1,0 +1,9 @@
+data/csv/*
+data/airport-codes_csv.csv
+data/airport-codes.csv
+data/us-airports.csv
+data/airline.csv
+data/airlines.csv
+data/airports.csv
+terraform/.terraform
+AIPRM-export-chatgpt-thread_2023-03-14T22_22_03.785Z.md
