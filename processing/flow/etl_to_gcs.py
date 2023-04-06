@@ -4,7 +4,9 @@ from prefect.tasks import task_input_hash
 from prefect_gcp.cloud_storage import GcsBucket
 from datetime import timedelta
 import pyarrow.csv as pv
+import pyarrow.parquet as pq
 import pyarrow as pa
+
 import sys
 import pandas as pd
 import numpy as np
@@ -54,22 +56,33 @@ flights_delay_schema = pa.schema(
 
 
 
-@task(retries=3, log_prints=True, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
+@task(retries=3, log_prints=True, cache_key_fn=task_input_hash,refresh_cache=True, cache_expiration=timedelta(days=1))
 def clean_airline_data(datasetPath: str) -> pd.DataFrame:
-
-    pathlib.Path(datasetPath).parent.resolve()
-    table = pv.read_csv(datasetPath)
-    table = table.remove_column(27)
     
-    table.cast(flights_delay_schema)
+    try:
+        table = pv.read_csv(datasetPath)
+        
+        print(table)
+        table = table.remove_column(27)
+        print(table.schema.names)
+        
+        table.cast(flights_delay_schema)
+        
+        
+        pq.write_table(table, datasetPath.replace('.csv', '.parquet'))
+    except:
+        pass
+    # pq.write_table(table, datasetPath.replace('./data/csv/*.csv', './data/parquet/*.parquet'))
 
-    # dataframe.astype()
-    # print(table.columns)
-    print(table.schema.names)
 
-    # dataframe = flights_delay_transformer(dataframe)
 
-    # print(dataframe.dtypes)
+
+@task(log_prints=True)
+def write_gcs(path: Path) -> None:
+    
+    gcp_cloud_storage_bucket_block = GcsBucket.load("airline-dealy")
+    gcp_cloud_storage_bucket_block.upload_from_path(from_path=path, to_path=path)
+    return
 
 
 @flow()
@@ -82,7 +95,7 @@ def etl_local_to_gcs(year: int, fileName: str, dir: str) -> None:
     # "../../../data/"
 
     clean_airline_data(f"{datasetPath}/{dataset_file}")
-    pass
+    
 
     # for url path
     # df = fetch(datasetPath)
@@ -114,7 +127,8 @@ def flights_delay_transformer(dataset: pd.DataFrame) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    # years = [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
-    years = [2009, ]
+    years = [2009, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+    # etl_local_to_gcs(2018, "", "csv")
+    # years = [2011, ]
     for year in years:
         etl_local_to_gcs(year, "", "csv")
