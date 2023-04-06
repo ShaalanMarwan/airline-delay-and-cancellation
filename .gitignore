@@ -8,3 +8,4 @@ data/airports.csv
 terraform/.terraform
 AIPRM-export-chatgpt-thread_2023-03-14T22_22_03.785Z.md
 data/.DS_Store
+data/parquet/2012.parquet

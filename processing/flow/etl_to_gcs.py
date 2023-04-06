@@ -7,6 +7,8 @@ import pyarrow.csv as pv
 import pyarrow.parquet as pq
 import pyarrow as pa
 
+# https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018 dataset path
+
 import sys
 import pandas as pd
 import numpy as np
@@ -88,13 +90,18 @@ def write_gcs(path: Path) -> None:
 @flow()
 def etl_local_to_gcs(year: int, fileName: str, dir: str) -> None:
     "The main ETL"
-
+    
+    
     dataset_file = f"{fileName}{year}.csv"
     # for local files
     datasetPath = f"./data/{dir}"
     # "../../../data/"
 
     clean_airline_data(f"{datasetPath}/{dataset_file}")
+    
+    path = Path(f"data/parquet/{year}.parquet")
+    
+    write_gcs(path)
     
 
     # for url path
@@ -127,7 +134,8 @@ def flights_delay_transformer(dataset: pd.DataFrame) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    years = [2009, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+    # years = [2009,2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]
+    years = [2012]
     # etl_local_to_gcs(2018, "", "csv")
     # years = [2011, ]
     for year in years:
