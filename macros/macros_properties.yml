@@ -1,0 +1,19 @@
+macros:
+  - name: get_cancellation_type_description
+    description: >
+      This macro receives a cancellation_code and returns the corresponding description.
+    arguments:
+      - name: cancellation_code
+        type: str
+        description: > 
+          The cancellation code to look up.
+          Must be one of the accepted values, otherwise the macro will return null.
+    code: |
+      case {{ cancellation_code }}
+        when 'A' then 'Carrier'
+        when 'B' then 'Cash'
+        when 'C' then 'No charge'
+        when 'D' then 'Dispute'
+        when 'nan' then 'Unknown'
+        when false then 'Unknown'
+      end
