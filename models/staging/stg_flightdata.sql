@@ -32,6 +32,6 @@ select
     cast(security_delay as float) as security_delay
 
 from
-    {{ source("us_airline_delay", "flights_delay") }}
+    {{ source("staging", "flights_delay") }}
     -- from 'flights_delay'
     
