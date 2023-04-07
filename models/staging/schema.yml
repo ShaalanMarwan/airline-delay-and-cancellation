@@ -1,0 +1,8 @@
+version: 2
+
+sources: 
+  - name: staging
+    database: data-engineering-camp-376112
+    schema: us_airline_delay
+    tables:
+      - name: flights_delay
