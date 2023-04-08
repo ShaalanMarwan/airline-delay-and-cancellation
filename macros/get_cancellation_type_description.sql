@@ -10,7 +10,7 @@
         when 'C' then 'No charge'
         when 'D' then 'Dispute'
         when 'nan' then 'Unknown'
-        when false then 'Unknown'
+        when null then 'Unknown'
     end
 
 {%- endmacro %}
