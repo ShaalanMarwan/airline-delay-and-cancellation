@@ -10,28 +10,28 @@ select
     cast(origin as string) as origin,
     cast(dest as string) as dest,
     cast(crs_dep_time as integer) as crs_dep_time,
-    cast(dep_time as float) as dep_time,
-    cast(dep_delay as float) as dep_delay,
-    cast(taxi_out as float) as taxi_out,
-    cast(wheels_off as float) as wheels_off,
-    cast(wheels_on as float) as wheels_on,
-    cast(taxi_in as float) as taxi_in,
+    cast(dep_time as numeric) as dep_time,
+    cast(dep_delay as numeric) as dep_delay,
+    cast(taxi_out as numeric) as taxi_out,
+    cast(wheels_off as numeric) as wheels_off,
+    cast(wheels_on as numeric) as wheels_on,
+    cast(taxi_in as numeric) as taxi_in,
     cast(crs_arr_time as integer) as crs_arr_time,
-    cast(arr_time as float) as arr_time,
-    cast(arr_delay as float) as arr_delay,
-    cast(cancelled as float) as cancelled,
-    cast(cancellation_code as string) as cancellation_code,
-    cast(diverted as float) as diverted,
-    cast(crs_elapsed_time as float) as crs_elapsed_time,
-    cast(actual_elapsed_time as float) as actual_elapsed_time,
-    cast(air_time as float) as air_time,
-    cast(distance as float) as distance,
-    cast(carrier_delay as float) as carrier_delay,
-    cast(weather_delay as float) as weather_delay,
-    cast(nas_delay as float) as nas_delay,
-    cast(security_delay as float) as security_delay
+    cast(arr_time as numeric) as arr_time,
+    cast(arr_delay as numeric) as arr_delay,
+    cast(cancelled as numeric) as cancelled,
+    {{ get_cancellation_type_description("cancellation_code") }}
+    as cancellation_code_description,
+    cast(diverted as numeric) as diverted,
+    cast(crs_elapsed_time as numeric) as crs_elapsed_time,
+    cast(actual_elapsed_time as numeric) as actual_elapsed_time,
+    cast(air_time as numeric) as air_time,
+    cast(distance as numeric) as distance,
+    cast(carrier_delay as numeric) as carrier_delay,
+    cast(weather_delay as numeric) as weather_delay,
+    cast(nas_delay as numeric) as nas_delay,
+    cast(security_delay as numeric) as security_delay
 
-from
-    {{ source("staging", "flights_delay") }}
-    -- from 'flights_delay'
-    
+from {{ source("staging", "flights_delay") }}
+-- from 'flights_delay'
+{% if var("is_test_run", default=true) %} limit 100 {% endif %}
