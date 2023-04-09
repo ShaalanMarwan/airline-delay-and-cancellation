@@ -32,6 +32,8 @@ The Airline delays and cancellations in USA between 2009 and 2018 datasets conta
 
 ## Dataset Description
 
+https://cloud.getdbt.com/accounts/148444/runs/138771363/docs/#!/overview
+
 There are two types of data in the dataset - zipped csv files.
 
 ```python
@@ -106,7 +108,12 @@ There are two types of data in the dataset - zipped csv files.
 ***
 # Goals 
 1- Reading Data 
+
 2- Terraform Setup 
+
 3- Prefect flow
+
 4- DBT 
+
 5- Spark or Kafka 
+
