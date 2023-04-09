@@ -6,7 +6,7 @@
 
     case {{ cancellation_code }}
         when 'A' then 'Carrier'
-        when 'B' then 'Cash'
+        when 'B' then 'Weather'
         when 'C' then 'No charge'
         when 'D' then 'Dispute'
         when 'nan' then null
