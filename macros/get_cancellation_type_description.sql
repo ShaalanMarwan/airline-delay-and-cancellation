@@ -9,8 +9,8 @@
         when 'B' then 'Cash'
         when 'C' then 'No charge'
         when 'D' then 'Dispute'
-        when 'nan' then 'Unknown'
-        when null then 'Unknown'
+        when 'nan' then null
+        when null then null
     end
 
 {%- endmacro %}
