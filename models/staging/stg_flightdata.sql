@@ -4,7 +4,7 @@
 -- select * from us_airline_delay.flights_delay
 select
     -- identifiers 
-    cast(fl_date as date) as fl_date,
+    cast(fl_date as timestamp) as fl_date,
     cast(op_carrier as string) as op_carrier,
     cast(op_carrier_fl_num as integer) as op_carrier_fl_num,
     cast(origin as string) as origin,
@@ -33,5 +33,3 @@ select
     cast(security_delay as numeric) as security_delay
 
 from {{ source("staging", "flights_delay") }}
--- from 'flights_delay'
-{% if var("is_test_run", default=true) %} limit 100 {% endif %}
