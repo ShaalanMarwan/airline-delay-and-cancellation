@@ -6,3 +6,30 @@ sources:
     schema: us_airline_delay
     tables:
       - name: flights_delay
+
+models:
+    - name: stg_flightdata
+      description: >
+       USA flights dataset 
+      columns:
+        - name: fl_date
+          description: the date of the flight
+          tests:
+            - not_null:
+                severity: warn
+
+        - name: op_carrier
+          description: The code for the airline operating the flight. 
+          tests:
+            - relationships:
+                field: "iata_code"
+                to: ref('airlines_zone')
+                severity: warn
+        - name: origin
+          description: The code for the origin airport of the flight.
+          tests:
+            - relationships:
+                field: "iata_code"
+                to: ref('airports_zone')
+                severity: warn
+      
