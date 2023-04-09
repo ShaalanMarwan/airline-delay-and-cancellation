@@ -39,3 +39,15 @@ models:
         materialized: view
     core:
         materialized: table
+seeds:
+  usa_flights_delay:
+    airport_lookup:
+      +column_types:
+        IATA_CODE: string
+    airlines_lookup:
+      +column_types:
+        iata_code: string
+    
+        
+        
+
