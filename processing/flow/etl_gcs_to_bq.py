@@ -68,7 +68,7 @@ def etl_to_bq_parent_flow(
 
     
 if __name__ == "__main__":
-    years = [2012]
+    years = [2009,2010,2011,2012,2013,2014,2015,2016,2017,2018]
     # etl_local_to_gcs(2018, "", "csv")
     # years = [2011, ]
     for year in years:
