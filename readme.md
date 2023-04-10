@@ -9,6 +9,7 @@
   - [Visualization](#visualization)
       - [Page 1 : Flights Delay](#page-1--flights-delay)
       - [Page 2 : Flights Cancellations](#page-2--flights-cancellations)
+  - [Contact](#contact)
 
 ***
 ## Preface 
@@ -203,3 +204,14 @@ The Visualization section showcases a collection of charts that are designed to 
 <img src="./images/dashboard-page-2.png"
      alt="Markdown Monster icon"
      />
+
+
+***
+## Contact
+
+If you have any questions, feedback, or issues with the repository, please feel free to reach out to us using the following channels:
+
+- **Email**: salsanjary@gmail.com
+- **LinkedIn**: [Shaalan Marwan](https://www.linkedin.com/in/shaalanmarwan/)
+- **GitHub Issue**: https://github.com/ShaalanMarwan/airline-delay-and-cancellation/issues
+
