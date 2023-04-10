@@ -13,18 +13,20 @@
 
 ***
 ## Preface 
-For my data engineering course project, I chose to utilize the [Airline Delay and Cancellation Data, 2009 - 2018](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018). The dataset is a summary information on the number of on-time, delayed, canceled, and diverted flights. It has a few limitations, however. Firstly, it is divided into yearly segments spanning from 2009 to 2018. Additionally, the information is not easily extractable as there is little metadata. 
-For example, the use of airline and airport codes may pose a challenge as there is no accompanying information within the dataset to identify these codes. To overcome this issue, I was able to source supplementary CSV files that contain details on each airport’s location, state, city and corresponding airport code.
+For my data engineering course project, I chose to utilize the [Airline Delay and Cancellation Data, 2009 - 2018](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018). The dataset is a summary information on the number of on-time, delayed, canceled, and diverted flights. 
 
 
 ***
 ### Problem
-This dataset is not readily analyzable and there are few obstacles for data analysis, however. it just referred to airline code or airport code which we cant have some insightful from the dataset without know State, city , airport name , airline name …
+This dataset is not readily analyzable and there are few obstacles for data analysis, however. It has a few limitations, however. Firstly, it is divided into yearly segments spanning from 2009 to 2018. Additionally, the information is not easily extractable as there is little metadata. 
+For example, the use of airline and airport codes may pose a challenge as there is no accompanying information within the dataset to identify these codes. To overcome this issue, I was able to source supplementary CSV files that contain details on each airport’s location, state, city and corresponding airport code.
 
 
 <!-- style="float: left; margin-right: 10px;" -->
 
 <!-- [System ](./system-structure.png) -->
+***
+## Data Engineering Architecture Overview
 <img src="./images/system-structure.png"
      alt="Markdown Monster icon"
      />
@@ -34,22 +36,22 @@ This dataset is not readily analyzable and there are few obstacles for data anal
 ### Repository Structure
 This repository has a typical data processing workflow structure, consisting of infrastructure as code (Terraform), raw data in CSV format, processed data in parquet format, and data processing scripts in the `processing` folder. It also includes lookup tables for airline and airport codes in the `data` folder.
 - ### Infrastructure as Code
-`terraform`: folder that contain Terraform configurations
+`terraform`: folder that contains Terraform configurations
 
-`terraform/main.tf`: include terraform for Google Cloud image
+`terraform/main.tf`: includes terraform for Google Cloud image
 
-`terraform/variable.tf`: include terraform variables for Google Cloud image
+`terraform/variable.tf`: includes terraform variables for Google Cloud image
 
 - #### Data
 `/data/csv`: the raw data after downloading it from Kaggle
 
 `data/parquet`: parquet files
 
-`data/`: include lookup tables for airline and airports codes
+`data/`: includes lookup tables for airline and airports codes
 
 - #### Processing
 
-`processing/flow`: that contains transform and uploading raw data from local to Google Cloud Bucket then from Bucket to Google Cloud
+`processing/flow`: folder that contains transform and uploading raw data from local to Google Cloud Bucket then from Bucket to Google Cloud
 
 [DHW Queries for Partitioning and Clustering](./DHW-queries.md)
 
@@ -70,8 +72,8 @@ This repository has a typical data processing workflow structure, consisting of 
   python ./processing/flow/etl_gcs_to_bq.py 
   ```
 - You can find the dbt files in second the branch called `dbt-model`
-- Extra bonus feedback 
-  - Go to your Google data studio and connect your BigQuery with the Dashboard Studio
+
+- Go to your Google [data studio](https://datastudio.withgoogle.com/) and connect your BigQuery with the Dashboard Studio
   
 - You can find BigQuery Queries for partitioning and clustering in [code](./DHW-queries.md)
   
