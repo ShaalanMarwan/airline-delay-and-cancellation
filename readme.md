@@ -12,11 +12,14 @@
 
 ***
 ## Preface 
-Air travel has become an integral part of our lives, whether it's for business or leisure. However, airline delays and cancellations are an unfortunate reality that passengers often face. These issues can cause significant inconvenience, financial loss, and frustration for travelers. Therefore, airlines and airports need to be proactive in addressing these issues and providing the necessary information and support to their customers.
+For my data engineering course project, I chose to utilize [Airline Delay and Cancellation Data, 2009 - 2018](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018). The dataset is about XYZ. It has a few limitations, however. Firstly, it is divided into yearly segments spanning from 2009 to 2018. Additionally, the information is not easily extractable as there is little metadata. For example, the use of airline and airport codes may pose a challenge as there is no accompanying information within the dataset to identify these codes. To overcome this issue, I was able to source supplementary CSV files that contain details on each airport’s location, state, city and corresponding airport code.
+
 
 ***
 ### Problem
-The problem with [this dataset](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018) that split for each year from 2009 - 2018 and also they use airline code and airport code which you cant find it based on any information in the table . i found other csv files that has each airport and the state,city and the location of the airport and another is for airport code.
+This dataset is not readily analyzable and there are few obstacles for data analysis, however. it just referred to airline code or airport code which we cant have some insightful from the dataset without know State, city , airport name , airline name …
+
+
 <!-- style="float: left; margin-right: 10px;" -->
 
 <!-- [System ](./system-structure.png) -->
@@ -36,7 +39,7 @@ The problem with [this dataset](https://www.kaggle.com/datasets/yuanyuwendymu/ai
 `terraform/variable.tf`: include terraform variables for Google Cloud image
 
 - #### Data
-`/data/csv`: the data source after after downloading it from Kaggle
+`/data/csv`: the raw data after downloading it from Kaggle
 
 `data/parquet`: parquet files
 
@@ -44,9 +47,9 @@ The problem with [this dataset](https://www.kaggle.com/datasets/yuanyuwendymu/ai
 
 - #### Processing
 
-`processing/flow`: that contain transform and uploading from local to Google Cloud Bucket then from Bucket to google cloud
+`processing/flow`: that contains transform and uploading raw data from local to Google Cloud Bucket then from Bucket to Google Cloud
 
-[DHW Queries for Partitioning and Clustering](./DHW-queries)
+[DHW Queries for Partitioning and Clustering](./DHW-queries.md)
 
 update readme
 ***
@@ -54,19 +57,19 @@ update readme
 -  Download the dataset from [Airline Delay and Cancellation Data, 2009 - 2018
  ](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018)
 
-- Moved the dataset to `data/csv` folder in the code 
+- Move the dataset to `data/csv` folder in the code 
 
-- Run the Python Script in `processing/flow/etl_to_gcs.py` by writing 
+- Run the Python Script `processing/flow/etl_to_gcs.py` by writing 
   ```python
   python ./processing/flow/etl_to_gcs.py    
   ```
-   Run the python Script in `processing/flow/etl_gcs_to_bq.py`
+   Run the python Script `processing/flow/etl_gcs_to_bq.py`
   ```python
   python ./processing/flow/etl_gcs_to_bq.py 
   ```
-- You can find the dbt files in second branch called `dbt-model`
-
-- Go to your Google data studio and connect your BigQuery with the Dashboard Studio 
+- You can find the dbt files in second the branch called `dbt-model`
+~~~ Extra bonus feedback ~~~
+- Go to your Google data studio and connect your BigQuery with the Dashboard Studio
   
 - You can find BigQuery Queries for partitioning and clustering in [code](./DHW-queries.md)
   
