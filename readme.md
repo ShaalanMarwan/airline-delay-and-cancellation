@@ -37,7 +37,9 @@ The problem with [this dataset](https://www.kaggle.com/datasets/yuanyuwendymu/ai
 
 - #### Data
 `/data/csv`: the data source after after downloading it from Kaggle
+
 `data/parquet`: parquet files
+
 `data/`: include lookup tables for airline and airports codes
 
 - #### Processing
