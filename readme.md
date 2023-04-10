@@ -59,7 +59,7 @@ update readme
 
 - Move the dataset to `data/csv` folder in the code 
 
-- Run the Python Script `processing/flow/etl_to_gcs.py` by writing 
+- Run the Python Script `processing/flow/etl_to_gcs.py` 
   ```python
   python ./processing/flow/etl_to_gcs.py    
   ```
