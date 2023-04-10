@@ -6,6 +6,7 @@
     - [Repository Structure](#repository-structure)
     - [How to run it](#how-to-run-it)
       - [DBT documentation](#dbt-documentation)
+  - [Data Engineering Architecture Overview](#data-engineering-architecture-overview)
   - [Visualization](#visualization)
       - [Page 1 : Flights Delay](#page-1--flights-delay)
       - [Page 2 : Flights Cancellations](#page-2--flights-cancellations)
