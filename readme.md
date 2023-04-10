@@ -29,7 +29,7 @@ The problem with [this dataset](https://www.kaggle.com/datasets/yuanyuwendymu/ai
 ### Repository Structure
 
 - ### Infrastructure as Code
-`terraform`: folder than contain Terraform configurations
+`terraform`: folder that contain Terraform configurations
 `terraform/main.tf`: include terraform for Google Cloud image
 `terraform/variable.tf`: include terraform variables for Google Cloud image
 - #### Data
