@@ -12,7 +12,8 @@
 
 ***
 ## Preface 
-For my data engineering course project, I chose to utilize [Airline Delay and Cancellation Data, 2009 - 2018](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018). The dataset is about XYZ. It has a few limitations, however. Firstly, it is divided into yearly segments spanning from 2009 to 2018. Additionally, the information is not easily extractable as there is little metadata. For example, the use of airline and airport codes may pose a challenge as there is no accompanying information within the dataset to identify these codes. To overcome this issue, I was able to source supplementary CSV files that contain details on each airport’s location, state, city and corresponding airport code.
+For my data engineering course project, I chose to utilize [Airline Delay and Cancellation Data, 2009 - 2018](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018). The dataset is summary information on the number of on-time, delayed, canceled, and diverted flights. It has a few limitations, however. Firstly, it is divided into yearly segments spanning from 2009 to 2018. Additionally, the information is not easily extractable as there is little metadata. 
+For example, the use of airline and airport codes may pose a challenge as there is no accompanying information within the dataset to identify these codes. To overcome this issue, I was able to source supplementary CSV files that contain details on each airport’s location, state, city and corresponding airport code.
 
 
 ***
@@ -23,14 +24,14 @@ This dataset is not readily analyzable and there are few obstacles for data anal
 <!-- style="float: left; margin-right: 10px;" -->
 
 <!-- [System ](./system-structure.png) -->
-<img src="./system-structure.png"
+<img src="./images/system-structure.png"
      alt="Markdown Monster icon"
      />
 
 ***
 
 ### Repository Structure
-
+This repository has a typical data processing workflow structure, consisting of infrastructure as code (Terraform), raw data in CSV format, processed data in parquet format, and data processing scripts in the `processing` folder. It also includes lookup tables for airline and airport codes in the `data` folder.
 - ### Infrastructure as Code
 `terraform`: folder that contain Terraform configurations
 
@@ -51,7 +52,7 @@ This dataset is not readily analyzable and there are few obstacles for data anal
 
 [DHW Queries for Partitioning and Clustering](./DHW-queries.md)
 
-update readme
+
 ***
 ### How to run it
 -  Download the dataset from [Airline Delay and Cancellation Data, 2009 - 2018
@@ -189,14 +190,15 @@ There are two types of data in the dataset - zipped csv files.
  -->
 
 ## Visualization 
-[Google Data Studio](https://lookerstudio.google.com/reporting/ef3dd913-eeed-481a-b826-652544b487d9)
+The Visualization section showcases a collection of charts that are designed to visually represent flight delay and cancellation data.
+[Google Data Studio link](https://lookerstudio.google.com/reporting/ef3dd913-eeed-481a-b826-652544b487d9)
 
 #### Page 1 : Flights Delay
-<img src="./dashboard-page-1.png"
+<img src="./images/dashboard-page-1.png"
      alt="Markdown Monster icon"
      />
 
 #### Page 2 : Flights Cancellations
-<img src="./dashboard-page-2.png"
+<img src="./images/dashboard-page-2.png"
      alt="Markdown Monster icon"
      />
