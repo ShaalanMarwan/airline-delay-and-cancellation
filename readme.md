@@ -13,7 +13,7 @@
 
 ***
 ## Preface 
-For my data engineering course project, I chose to utilize [Airline Delay and Cancellation Data, 2009 - 2018](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018). The dataset is summary information on the number of on-time, delayed, canceled, and diverted flights. It has a few limitations, however. Firstly, it is divided into yearly segments spanning from 2009 to 2018. Additionally, the information is not easily extractable as there is little metadata. 
+For my data engineering course project, I chose to utilize the [Airline Delay and Cancellation Data, 2009 - 2018](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018). The dataset is a summary information on the number of on-time, delayed, canceled, and diverted flights. It has a few limitations, however. Firstly, it is divided into yearly segments spanning from 2009 to 2018. Additionally, the information is not easily extractable as there is little metadata. 
 For example, the use of airline and airport codes may pose a challenge as there is no accompanying information within the dataset to identify these codes. To overcome this issue, I was able to source supplementary CSV files that contain details on each airport’s location, state, city and corresponding airport code.
 
 
