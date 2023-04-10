@@ -68,8 +68,8 @@ update readme
   python ./processing/flow/etl_gcs_to_bq.py 
   ```
 - You can find the dbt files in second the branch called `dbt-model`
-~~~ Extra bonus feedback ~~~
-- Go to your Google data studio and connect your BigQuery with the Dashboard Studio
+- Extra bonus feedback 
+  - Go to your Google data studio and connect your BigQuery with the Dashboard Studio
   
 - You can find BigQuery Queries for partitioning and clustering in [code](./DHW-queries.md)
   
