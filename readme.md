@@ -63,7 +63,7 @@ update readme
   ```python
   python ./processing/flow/etl_to_gcs.py    
   ```
-   Run the python Script `processing/flow/etl_gcs_to_bq.py`
+- Run the python Script `processing/flow/etl_gcs_to_bq.py`
   ```python
   python ./processing/flow/etl_gcs_to_bq.py 
   ```
