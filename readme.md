@@ -2,17 +2,91 @@
 # Analytics of Airline Delays of US Airports
 - [Analytics of Airline Delays of US Airports](#analytics-of-airline-delays-of-us-airports)
   - [Preface](#preface)
-  - [Introduction](#introduction)
-  - [Dataset Description](#dataset-description)
-- [Setup](#setup)
-- [Goals](#goals)
+    - [Problem](#problem)
+    - [Repository Structure](#repository-structure)
+    - [How to run it](#how-to-run-it)
+      - [DBT documentation](#dbt-documentation)
+  - [Data Engineering Architecture Overview](#data-engineering-architecture-overview)
+  - [Visualization](#visualization)
+      - [Page 1 : Flights Delay](#page-1--flights-delay)
+      - [Page 2 : Flights Cancellations](#page-2--flights-cancellations)
+  - [Contact](#contact)
 
-
+***
 ## Preface 
-Air travel has become an integral part of our lives, whether it's for business or leisure. However, airline delays and cancellations are an unfortunate reality that passengers often face. These issues can cause significant inconvenience, financial loss, and frustration for travelers. Therefore, airlines and airports need to be proactive in addressing these issues and providing the necessary information and support to their customers.
+For my data engineering course project, I chose to utilize the [Airline Delay and Cancellation Data, 2009 - 2018](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018). The dataset is a summary information on the number of on-time, delayed, canceled, and diverted flights. 
 
-## Introduction
+
+***
+### Problem
+This dataset is not readily analyzable and there are few obstacles for data analysis, however. It has a few limitations, however. Firstly, it is divided into yearly segments spanning from 2009 to 2018. Additionally, the information is not easily extractable as there is little metadata. 
+For example, the use of airline and airport codes may pose a challenge as there is no accompanying information within the dataset to identify these codes. To overcome this issue, I was able to source supplementary CSV files that contain details on each airport’s location, state, city and corresponding airport code.
+
+
+<!-- style="float: left; margin-right: 10px;" -->
+
+<!-- [System ](./system-structure.png) -->
+***
+## Data Engineering Architecture Overview
+<img src="./images/system-structure.png"
+     alt="Markdown Monster icon"
+     />
+
+***
+
+### Repository Structure
+This repository has a typical data processing workflow structure, consisting of infrastructure as code (Terraform), raw data in CSV format, processed data in parquet format, and data processing scripts in the `processing` folder. It also includes lookup tables for airline and airport codes in the `data` folder.
+- ### Infrastructure as Code
+`terraform`: folder that contains Terraform configurations
+
+`terraform/main.tf`: includes terraform for Google Cloud image
+
+`terraform/variable.tf`: includes terraform variables for Google Cloud image
+
+- #### Data
+`/data/csv`: the raw data after downloading it from Kaggle
+
+`data/parquet`: parquet files
+
+`data/`: includes lookup tables for airline and airports codes
+
+- #### Processing
+
+`processing/flow`: folder that contains transform and uploading raw data from local to Google Cloud Bucket then from Bucket to Google Cloud
+
+[DHW Queries for Partitioning and Clustering](./DHW-queries.md)
+
+
+***
+### How to run it
+-  Download the dataset from [Airline Delay and Cancellation Data, 2009 - 2018
+ ](https://www.kaggle.com/datasets/yuanyuwendymu/airline-delay-and-cancellation-data-2009-2018)
+
+- Move the dataset to `data/csv` folder in the code 
+
+- Run the Python Script `processing/flow/etl_to_gcs.py` 
+  ```python
+  python ./processing/flow/etl_to_gcs.py    
+  ```
+- Run the python Script `processing/flow/etl_gcs_to_bq.py`
+  ```python
+  python ./processing/flow/etl_gcs_to_bq.py 
+  ```
+- You can find the dbt files in second the branch called `dbt-model`
+
+- Go to your Google [data studio](https://datastudio.withgoogle.com/) and connect your BigQuery with the Dashboard Studio
+  
+- You can find BigQuery Queries for partitioning and clustering in [code](./DHW-queries.md)
+  
+#### DBT documentation
+
+
+https://cloud.getdbt.com/accounts/148444/runs/138771363/docs/#!/overview
+
+<!-- ## Introduction
 The Airline delays and cancellations in USA between 2009 and 2018 datasets contain 28 columns and for the process we should clean the data and implement the following:
+
+
 
 
 - Extract the data 
@@ -21,18 +95,19 @@ The Airline delays and cancellations in USA between 2009 and 2018 datasets conta
 - find the right types of the data
 - Terraform setup (IaC) with database schema(optional)
 - Data ingestion :
-  - Batch/Workflow orchestration (Airflow, Prefect, etc)
-  - Steam (Kafka , Pulsar)
+  - Batch/Workflow orchestration (Prefect)
 - Data warehouse: Tables are partitioned and clustered 
-- Transformations: (dbt, spark, etc)
-- Dashboard : Google dashboard or Metabase
+- Transformations: (DBT)
+- Dashboard : Google dashboard
+ -->
+
+<!-- *** -->
 
 
-***
 
-## Dataset Description
 
-https://cloud.getdbt.com/accounts/148444/runs/138771363/docs/#!/overview
+
+<!-- ## Dataset Description
 
 There are two types of data in the dataset - zipped csv files.
 
@@ -73,10 +148,10 @@ There are two types of data in the dataset - zipped csv files.
 'NAS_DELAY': The amount of time in minutes that the delay was due to the National Airspace System.
 'SECURITY_DELAY': The amount of time in minutes that the delay was due to security issues.
 'LATE_AIRCRAFT_DELAY': The amount of time in minutes that the delay was due to a previous flight using the same aircraft arriving late.
-```
+``` -->
 
 ***
-# Setup
+<!-- # Setup
 ```
 .Repo
 ├── config.yml
@@ -116,4 +191,30 @@ There are two types of data in the dataset - zipped csv files.
 4- DBT 
 
 5- Spark or Kafka 
+ -->
+
+## Visualization 
+The Visualization section showcases a collection of charts that are designed to visually represent flight delay and cancellation data.
+
+[Google Data Studio link](https://lookerstudio.google.com/reporting/ef3dd913-eeed-481a-b826-652544b487d9)
+
+#### Page 1 : Flights Delay
+<img src="./images/dashboard-page-1.png"
+     alt="Markdown Monster icon"
+     />
+
+#### Page 2 : Flights Cancellations
+<img src="./images/dashboard-page-2.png"
+     alt="Markdown Monster icon"
+     />
+
+
+***
+## Contact
+
+If you have any questions, feedback, or issues with the repository, please feel free to reach out to us using the following channels:
+
+- **Email**: salsanjary@gmail.com
+- **LinkedIn**: [Shaalan Marwan](https://www.linkedin.com/in/shaalanmarwan/)
+- **GitHub Issue**: https://github.com/ShaalanMarwan/airline-delay-and-cancellation/issues
 
