@@ -79,7 +79,9 @@ This repository has a typical data processing workflow structure, consisting of 
 - You can find BigQuery Queries for partitioning and clustering in [code](./DHW-queries.md)
   
 #### DBT documentation
-
+<img src="./images/dbt-model.png"
+     alt="Markdown Monster icon"
+     />
 
 https://cloud.getdbt.com/accounts/148444/runs/138771363/docs/#!/overview
 
